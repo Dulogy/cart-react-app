@@ -23,6 +23,9 @@ class CartItem extends Component{
             return {
                 qty : prevState.qty + 1,
             }
+        },() => {
+            // use callback to make  set state call synschronus 
+            console.log('this.state',this.state) ;
         })
     }
 
@@ -34,6 +37,9 @@ class CartItem extends Component{
             return{
                 qty : prevState.qty - 1,
             }
+        },() => {
+            // use callback to make  set state call synschronus 
+            console.log('this.state',this.state) ;
         })
     }
 
