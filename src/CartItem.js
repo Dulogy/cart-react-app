@@ -45,7 +45,8 @@ class CartItem extends Component{
 
 
     render(){
-        const {title,price,qty,img} = this.state ;
+        // const {title,price,qty,img} = this.state ;
+        const {title,price,qty,img} = this.props.product ;
         return(
             <div className="cart-item">
                 <div className="left-block">
