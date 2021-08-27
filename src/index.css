@@ -9,7 +9,7 @@ body {
 
 .cart-item{
   display: inline-flex;
-  margin: 0 20px;
+  margin: 15px 20px;
 }
 .cart-item .right-block{
   padding: 0 20px;
