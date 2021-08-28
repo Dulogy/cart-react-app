@@ -6,40 +6,13 @@ class App extends Component{
   constructor(){
     super();
     this.state = {
-        products : [
-            {
-                id : 1,
-                title : "Mobile Phone",
-                price : 9800,
-                qty   : 0,
-                img   : 'https://images.unsplash.com/photo-1570633545582-cd25ed6e8497?ixid=MnwxMjA3fDB8MHxzZWFyY2h8NzJ8fG1vYmlsZXxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60'
-            },
-            {
-                id : 2,
-                title : "Calculator",
-                price : 800,
-                qty   : 0,
-                img   : 'https://images.unsplash.com/photo-1611125832047-1d7ad1e8e48f?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8Y2FsY3VsYXRvcnxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60'
-            },
-            {
-                id : 3,
-                title : "Laptop",
-                price : 25000,
-                qty   : 0,
-                img   : 'https://images.unsplash.com/photo-1541807084-5c52b6b3adef?ixid=MnwxMjA3fDB8MHxzZWFyY2h8N3x8bGFwdG9wfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60'
-            },
-            {
-                id : 4,
-                title : "Earphone",
-                price : 900,
-                qty   : 0,
-                img   : 'https://images.unsplash.com/photo-1608156639585-b3a032ef9689?ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8ZWFycGhvbmVzfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60'
-            },
-
-        ]
-        
+        products : []   
     }
-}
+  }
+
+  componentDidMount(){
+   
+  }
 
   handleIncreaseQuantity = (product) => {
   const { products } = this.state ;
