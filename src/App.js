@@ -13,6 +13,7 @@ class App extends Component{
     this.db = firebase.firestore()
   }
 
+  // for fetching db data
   componentDidMount(){
     // firebase
     // .firestore()
@@ -52,39 +53,65 @@ class App extends Component{
     
   }
   
-
+  // increase quantity of the product
   handleIncreaseQuantity = (product) => {
-  const { products } = this.state ;
-  const index = products.indexOf(product) ;
-  products[index].qty+= 1 ;
-    this.setState({
-        products : products,
-        loading : false
+    const { products } = this.state ;
+    const index = products.indexOf(product) ;
+
+    // products[index].qty+= 1 ;
+    //   this.setState({
+    //       products : products,
+    //       loading : false
+    //   })
+
+    const docRef = this.db.collection('products').doc(products[index].id);
+    docRef
+    .update({
+      qty : products[index].qty + 1 
+    })
+    .then(()=>{
+      console.log("updated successfully") ;
+    })
+    .catch((err)=>{
+      console.log("error",err)
     })
   }
 
+  // decrease quantity of the product
   handleDecreaseQuantity = (product) => {
-  const { products } = this.state ;
-  const index = products.indexOf(product) ;
-  const count = products[index].qty ;
-    if(count === 0){
-        return ;
-    }else{
-        products[index].qty-= 1 ;
-        this.setState({
-            products : products
-        })
-    }
+    const { products } = this.state ;
+    const index = products.indexOf(product) ;
+    const count = products[index].qty ;
+      if(count === 0){
+          return ;
+      }else{
+          // products[index].qty-= 1 ;
+          // this.setState({
+          //     products : products
+          // })
+          const docRef = this.db.collection('products').doc(products[index].id);
+          docRef
+          .update({
+            qty : products[index].qty - 1 
+          })
+          .then(()=>{
+            console.log("updated successfully") ;
+          })
+          .catch((err)=>{
+            console.log("error",err)
+          })
+      }
   }
 
+  // delete product from db
   handleDeleteProduct = (id) => {
-  const { products } = this.state ;
-  const items = products.filter((product) => (product.id !== id)) ;
-    this.setState({
-        products : items
-    })
+    const { products } = this.state ;
+    const items = products.filter((product) => (product.id !== id)) ;
+      this.setState({
+          products : items
+      })
   }
-
+  // get total products in the cart
   getCartCount = () => {
     const {products} = this.state ;
     let count = 0 ;
@@ -95,6 +122,7 @@ class App extends Component{
     return count ;
   }
 
+  // get totalPrice from navbar
   getTotalPrice = () => {
     const {products} = this.state ;
     let price = 0 ;
@@ -105,6 +133,7 @@ class App extends Component{
     return price ;
   }
 
+  // to add product from front-end
   addProduct = () =>{
     this.db
     .collection('products')
@@ -128,7 +157,7 @@ class App extends Component{
     return (
       <div className="App">
         <Navabr count={this.getCartCount()}/>
-        <button style={{marginTop:'8px',marginLeft:"4px", height:"30px"}} onClick={this.addProduct}>Add Product</button>
+        {/* <button style={{marginTop:'8px',marginLeft:"4px", height:"30px"}} onClick={this.addProduct}>Add Product</button> */}
         <h4 style={{textAlign : 'end',padding : '2px',marginRight:'10px', marginTop : '-24px'}}>Total : = {this.getTotalPrice()} /-</h4>
         <Cart 
           products = {products}
