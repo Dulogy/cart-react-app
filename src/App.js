@@ -36,6 +36,10 @@ class App extends Component{
 
     this.db
     .collection('products')
+    .where('price','>=',1000) // can apply any condition for db filter query
+    // .where('title','==','Laptop')
+    // .orderBy('price',"desc")
+    .limit(2)
     .onSnapshot((snapshot)=>{  // onsnapshot event listner for any change in the db
       snapshot.docs.map((doc)=>{
         console.log(doc.data());
@@ -106,10 +110,19 @@ class App extends Component{
   // delete product from db
   handleDeleteProduct = (id) => {
     const { products } = this.state ;
-    const items = products.filter((product) => (product.id !== id)) ;
-      this.setState({
-          products : items
-      })
+    // const items = products.filter((product) => (product.id !== id)) ;
+    //   this.setState({
+    //       products : items
+    //   })
+    const docRef = this.db.collection('products').doc(id);
+    docRef
+    .delete()
+    .then(()=>{
+      console.log("deleted successfully");
+    })
+    .catch((err)=>{
+      console.log("error",err);
+    })
   }
   // get total products in the cart
   getCartCount = () => {
@@ -149,7 +162,6 @@ class App extends Component{
     .catch((err)=>{
       console.log("error :",err)
     })
-
   }
 
   render(){
