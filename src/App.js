@@ -10,6 +10,7 @@ class App extends Component{
         products : [],
         loading : true   
     }
+    this.db = firebase.firestore()
   }
 
   componentDidMount(){
@@ -32,8 +33,7 @@ class App extends Component{
     //   })
     // })
 
-    firebase
-    .firestore()
+    this.db
     .collection('products')
     .onSnapshot((snapshot)=>{  // onsnapshot event listner for any change in the db
       snapshot.docs.map((doc)=>{
@@ -105,12 +105,31 @@ class App extends Component{
     return price ;
   }
 
+  addProduct = () =>{
+    this.db
+    .collection('products')
+    .add({
+      title : "pen",
+      img:"https://images.unsplash.com/photo-1583485088034-697b5bc54ccd?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8cGVufGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+      price : 500,
+      qty : 0,
+    })
+    .then((docRef)=>{
+      console.log('product added : ',docRef) ;
+    })
+    .catch((err)=>{
+      console.log("error :",err)
+    })
+
+  }
+
   render(){
     const { products,loading } = this.state ;
     return (
       <div className="App">
         <Navabr count={this.getCartCount()}/>
-        <h4 style={{textAlign : 'end',padding : '2px',marginRight:'10px'}}>Total : = {this.getTotalPrice()} /-</h4>
+        <button style={{marginTop:'8px',marginLeft:"4px", height:"30px"}} onClick={this.addProduct}>Add Product</button>
+        <h4 style={{textAlign : 'end',padding : '2px',marginRight:'10px', marginTop : '-24px'}}>Total : = {this.getTotalPrice()} /-</h4>
         <Cart 
           products = {products}
           onIncreaseQuantity = {this.handleIncreaseQuantity}
