@@ -13,12 +13,29 @@ class App extends Component{
   }
 
   componentDidMount(){
+    // firebase
+    // .firestore()
+    // .collection('products')
+    // .get()
+    // .then((snapshot)=>{
+    //   console.log(snapshot);
+    //   snapshot.docs.map((doc)=>{
+    //     console.log(doc.data());
+    //   })
+    //   const products = snapshot.docs.map((doc)=>{
+    //     const data = doc.data();
+    //     data['id'] = doc.id ;
+    //     return data;
+    //   })
+    //   this.setState({
+    //     products : products
+    //   })
+    // })
+
     firebase
     .firestore()
     .collection('products')
-    .get()
-    .then((snapshot)=>{
-      console.log(snapshot);
+    .onSnapshot((snapshot)=>{  // onsnapshot event listner for any change in the db
       snapshot.docs.map((doc)=>{
         console.log(doc.data());
       })
@@ -28,9 +45,11 @@ class App extends Component{
         return data;
       })
       this.setState({
-        products : products
+        products : products,
+        loading : false
       })
-    })
+    }) 
+    
   }
   
 
