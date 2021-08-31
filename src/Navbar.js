@@ -14,7 +14,7 @@ const Navbar = (props) => {
 const styles = {
     cartIcon : {
         height : 32,
-        marginRight : 20,
+        marginRight : 60,
     },
     nav : {
         height : 70,
@@ -31,7 +31,7 @@ const styles = {
         borderRadius : '50%',
         padding : '4px 8px',
         position : 'absolute',
-        right : 0,
+        right : 30,
         top : -9
     }
 };

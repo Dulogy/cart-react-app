@@ -36,10 +36,10 @@ class App extends Component{
 
     this.db
     .collection('products')
-    .where('price','>=',1000) // can apply any condition for db filter query
+    .where('price','>=',100) // can apply any condition for db filter query
     // .where('title','==','Laptop')
     // .orderBy('price',"desc")
-    .limit(2)
+    // .limit(2)
     .onSnapshot((snapshot)=>{  // onsnapshot event listner for any change in the db
       snapshot.docs.map((doc)=>{
         console.log(doc.data());
