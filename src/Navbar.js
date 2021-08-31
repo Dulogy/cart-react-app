@@ -2,12 +2,15 @@ import React from "react";
 
 const Navbar = (props) => {
     return(
-        <div style={styles.nav}>
-            <div style={styles.cartIconContainer}>
-                <img style={styles.cartIcon} alt="cart" src="https://image.flaticon.com/icons/png/512/1170/1170678.png"/>
-                <span style={styles.cartCount}>{props.count}</span> 
+        <>
+            <div style={styles.nav}>
+                <div style={styles.cartIconContainer}>
+                    <img style={styles.cartIcon} alt="cart" src="https://image.flaticon.com/icons/png/512/1170/1170678.png"/>
+                    <span style={styles.cartCount}>{props.count}</span> 
+                </div>
             </div>
-        </div>
+            <h1 style={{marginTop : "-55px",marginLeft:"10px"}}>Cart-App</h1>
+        </>
     )
 }
 
@@ -31,7 +34,7 @@ const styles = {
         borderRadius : '50%',
         padding : '4px 8px',
         position : 'absolute',
-        right : 30,
+        right : 35,
         top : -9
     }
 };
