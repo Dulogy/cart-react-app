@@ -43,6 +43,7 @@ class App extends Component{
     .onSnapshot((snapshot)=>{  // onsnapshot event listner for any change in the db
       snapshot.docs.map((doc)=>{
         console.log(doc.data());
+        return " "
       })
       const products = snapshot.docs.map((doc)=>{
         const data = doc.data();
@@ -109,7 +110,7 @@ class App extends Component{
 
   // delete product from db
   handleDeleteProduct = (id) => {
-    const { products } = this.state ;
+    // const { products } = this.state ;
     // const items = products.filter((product) => (product.id !== id)) ;
     //   this.setState({
     //       products : items

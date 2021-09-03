@@ -1,5 +1,7 @@
 {
   "projects": {
-    "default": "cart-dk"
-  }
+    "default": "cart-dk",
+    "production": "cart-dk"
+  },
+  "targets": {}
 }
